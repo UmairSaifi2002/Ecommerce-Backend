@@ -11,6 +11,7 @@ from app.middleware.error_handler import (
 )
 from app.routers import health
 from app.utils.logging import setup_logging
+from app.routers import auth, buyers, health, sellers 
 
 logger = logging.getLogger(__name__)
 
@@ -62,7 +63,9 @@ def create_app() -> FastAPI:
 
     # Routers
     app.include_router(health.router, prefix="/api/v1")
-
+    app.include_router(auth.router, prefix="/api/v1")
+    app.include_router(buyers.router, prefix="/api/v1")
+    app.include_router(sellers.router, prefix="/api/v1")
     return app
 
 
